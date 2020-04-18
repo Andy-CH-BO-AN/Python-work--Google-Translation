@@ -2,19 +2,30 @@ from selenium import webdriver
 import time
 import os
 
+language_dict = {"1": "zh-TW",
+                 "2": "en-GB",
+                 "3": "fr-FR",
+                 "4": "de-DE",
+                 "5": "es-ES",
+                 "6": "ru-RU",
+                 "7": "it-IT",
+                 "8": "ko-KR",
+                 "9": "ja-JP", }
+
+language_dict2 = {"zh-TW": "Chinese",
+                  "en-GB": "English",
+                  "fr-FR": "French",
+                  "de-DE": "German",
+                  "es-ES": "Spanish",
+                  "ru-RU": "Russian",
+                  "it-IT": "Italian",
+                  "ko-KR": "Korean",
+                  "ja-JP": "Japanese", }
+
 
 def select_languages():
     select_language = "0"
-    language_dict = \
-        {"1": "zh-TW",
-         "2": "en-GB",
-         "3": "fr-FR",
-         "4": "de-DE",
-         "5": "es-ES",
-         "6": "ru-RU",
-         "7": "it-IT",
-         "8": "ko-KR",
-         "9": "ja-JP", }
+
     select_language = input("Select your language to translate!!\n"
                             "press 1: Chinese\n"
                             "press 2: English\n"
@@ -40,7 +51,9 @@ def translation(language):
     element = driver.find_element_by_id("source")
 
     # 輸入內容
-    translated_text = input("Key in the text(make sure your input is correct):")
+    str_language = language_dict2[f'{language}']
+    translated_text = input(f"The language is {str_language}.\n"
+                            "Key in the text(make sure your input is correct):")
     element.send_keys(f'{translated_text}')
     time.sleep(1)
     result = driver.find_element_by_class_name("tlid-translation,translation").text
