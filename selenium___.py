@@ -26,7 +26,7 @@ language_dict2 = {"zh-TW": "Chinese",
 def select_languages():
     select_language = "0"
 
-    select_language = input("Select a language to translate into ↓\n"
+    select_language = input("You can type in any words to translate into ↓\n"
                             "press 1: Chinese\n"
                             "press 2: English\n"
                             "press 3: French\n"
