@@ -26,7 +26,7 @@ language_dict2 = {"zh-TW": "Chinese",
 def select_languages():
     select_language = "0"
 
-    select_language = input("Select your language to translate!!\n"
+    select_language = input("Select a language to translate into ↓\n"
                             "press 1: Chinese\n"
                             "press 2: English\n"
                             "press 3: French\n"
@@ -36,8 +36,13 @@ def select_languages():
                             "press 7: Italian\n"
                             "press 8: Korean\n"
                             "press 9: Japanese\n")
-    language = language_dict[f'{select_language}']
-
+    try:
+        language = language_dict[f'{select_language}']
+    except Exception as e:
+        print("We don't have this language!!\n"
+              "Please choose again!!")
+        time.sleep(3)
+        select_languages()
     translation(language)
 
 
@@ -67,9 +72,14 @@ def menu(driver):
     if option == "1":
         driver.close()
         select_languages()
-    else:
+    elif option == "0":
         driver.close()
         os.close(0)
+    else:
+        print("We don't have this selection!!\n"
+              "Please choose again!!")
+        time.sleep(3)
+        menu(driver)
 
 
 if __name__ == '__main__':
